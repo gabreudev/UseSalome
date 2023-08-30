@@ -1,4 +1,4 @@
-@extends('layout') <!-- Certifique-se de que seu layout padrão esteja configurado em resources/views/layouts/app.blade.php -->
+@extends('site.layout') <!-- Certifique-se de que seu layout padrão esteja configurado em resources/views/layouts/app.blade.php -->
 
 @section('conteudo')
 
@@ -12,5 +12,7 @@
         </div>
     </div>
 </div>
+
+
 
 @endsection

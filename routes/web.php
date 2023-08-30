@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProdutoController;
+use App\Models\Produto;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('produtos', ProdutoController::class);
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', function(){
-    return view('home');
-});
+
+
+Route::get('/home',[ProdutoController::class, 'index'])->name('index');
+
+
+Route::get('/produto/{slug}',[ProdutoController::class, 'details'])->name('details');
+
 Route::get('/sobre', function(){
-    return view('sobre');
+    return view('site.sobre');
 });
 
 

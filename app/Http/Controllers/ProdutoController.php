@@ -12,9 +12,16 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //
+        
+        $produtos =  Produto::all();
+        return view('site.home', compact('produtos'));
     }
 
+    public function details($slug)
+    {
+        $produto = Produto::where('slug', $slug)->first();
+        return view('site.details', compact('produto'));
+    }
     /**
      * Show the form for creating a new resource.
      */
