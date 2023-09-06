@@ -17,10 +17,10 @@ return new class extends Migration
             $table->text('descricao');
             $table->double('preco', 10,2);
             $table->string('slug');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->integer('quantidade');
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('id_categoria');
+            $table->foreign('id_categoria')->references('id')->on('categoria')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

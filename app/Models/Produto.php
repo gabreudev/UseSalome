@@ -14,7 +14,6 @@ class Produto extends Model
             'preco',
             'slug',
             'image',
-            'quantidade',
-            'id_user'
+            'quantidade'
     ];
 }
