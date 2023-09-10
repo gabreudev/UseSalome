@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
+use App\Models\Venda;
 use Illuminate\Http\Request;
 
-class CategoriaController extends Controller
+class VendaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,6 @@ class CategoriaController extends Controller
     {
         //
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +34,7 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categoria $categoria)
+    public function show(Venda $venda)
     {
         //
     }
@@ -43,7 +42,7 @@ class CategoriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categoria $categoria)
+    public function edit(Venda $venda)
     {
         //
     }
@@ -51,7 +50,7 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, Venda $venda)
     {
         //
     }
@@ -59,7 +58,7 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(Venda $venda)
     {
         //
     }

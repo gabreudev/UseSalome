@@ -8,7 +8,7 @@
 <div class="row container">
     @foreach ($produtos as $key => $produto)
 
-    <div class="col s12 m3">
+    <div class="col s12 m4">
         <div class="card">
             <div class="card-image">
                 <img src="{{ $produto->image }}"> <!-- Coloque o campo correto do produto -->
@@ -16,10 +16,10 @@
             </div>
 
             <div class="card-content">
-                <span class="card-title">{{ $produto->nome }}</span> <!-- Coloque o campo correto do produto -->
-                
-            
-                <p>{{Str::limit($produto->descricao, 40)}}</p> <!-- Coloque o campo correto do produto -->
+                <span class="card-title">{{Str::limit($produto->nome, 40) }}</span> <!-- Coloque o campo correto do produto -->
+            <h5>R${{$produto->preco}}</h5>                
+            <p class="btn-holder"></p>
+
             </div>
         </div>
     </div>

@@ -15,28 +15,40 @@
 
   <!-- Dropdown Structure -->
   <ul id='dropdown1' class='dropdown-content'>
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><a href="#!">three</a></li>
-    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+    @foreach($categoriasMenu as $categoriasM)
+    <li><a href="{{route('categoria', $categoriasM->id )}}">{{$categoriasM->nome}}</a></li>
+    @endforeach
   </ul>
   
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">UseSalome</a>
+      <a href="{{route('index')}}" class="brand-logo center">UseSalome</a>
       <ul id="" class="right">
-        <li><a href="">Home</a></li>
+        <li><a href="{{route('index')}}">Home</a></li>
         <li><a href="" class="dropdown-trigger" data-target='dropdown1'>Categorias<i class="material-icons right">expand_more</i></a></li>
-        <li><a href="">Carrinho</a></li>
+        <li><a href="{{route('carrinho')}}">Carrinho<span class="new badge white" data-badge-caption="" style="color: black; font-weight:700;">{{count((array) session('carrinho'))}}</span></a></li>
         <li><a href="">Sobre</a></li>
       </ul>
     </div>
   </nav>
+  @if (session('success'))
+  <div class="alert alert-success center">
+      {{ session('success') }}
+  </div>
 
+ 
+ <style> .alert-success {
+      background-color: #dff0d8; /* Cor de fundo verde */
+      border: 1px solid #d0e9c6; /* Borda verde mais clara */
+      color: #3c763d; /* Cor do texto verde escuro */
+      padding: 10px; /* Espaçamento interno */
+      margin: 10px 0; /* Espaçamento externo */
+      border-radius: 4px; /* Borda arredondada */
+  } </style>
+  
+@endif
 
-
+</div>
 
 
   @yield('conteudo')
