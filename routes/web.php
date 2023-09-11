@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarrinhoController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdutoController;
 
 use Illuminate\Support\Facades\Route;
@@ -33,10 +34,12 @@ Route::delete('/rmvcarrinho/{id}', [CarrinhoController::class, 'rmvcarrinho'])->
 Route::get('/limparcarrinho', [CarrinhoController::class, 'limparcarrinho'])->name('limparcarrinho');
 Route::post('/atualizacarrinho', [CarrinhoController::class, 'atualizacarrinho'])->name('atualizacarrinho');
 
+Route::view('/sobre', 'site.sobre')->name('sobre');
+
+Route::view('/login', 'login.form')->name('login.form');
+Route::post('/auth', [LoginController::class, 'auth'])->name('auth');
+Route::post('/logout', [LoginController::class, 'auth'])->name('logout');
 
 
-Route::get('/sobre', function(){
-    return view('site.sobre')->name('sobre');
-});
 
 

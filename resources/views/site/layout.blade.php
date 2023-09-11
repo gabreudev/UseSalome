@@ -23,11 +23,15 @@
   <nav>
     <div class="nav-wrapper">
       <a href="{{route('index')}}" class="brand-logo center">UseSalome</a>
-      <ul id="" class="right">
+      <ul id="" class="left">
         <li><a href="{{route('index')}}">Home</a></li>
         <li><a href="" class="dropdown-trigger" data-target='dropdown1'>Categorias<i class="material-icons right">expand_more</i></a></li>
         <li><a href="{{route('carrinho')}}">Carrinho<span class="new badge white" data-badge-caption="" style="color: black; font-weight:700;">{{count((array) session('carrinho'))}}</span></a></li>
         <li><a href="">Sobre</a></li>
+      </ul>
+
+      <ul id="" class="right">
+        <li><a href="" class="dropdown-trigger" data-target='dropdown1'>Olá {{auth()->user()->name}}<i class="material-icons right">expand_more</i></a></li>
       </ul>
     </div>
   </nav>

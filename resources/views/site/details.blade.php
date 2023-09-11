@@ -26,7 +26,7 @@
                     <input type="hidden" name="nome" value="{{$produto->nome}}">
                     <input type="hidden" name="preco" value="{{$produto->preco}}">
                     <input type="hidden" name="image" value="{{$produto->image}}">
-                    <button class="btn orange btn-large waves-effect waves-light">Adicionar ao Carrinho</button>
+                    <button class="btn orange btn-large waves-effect waves-light">Adicionar ao Carrinho <i class="material-icons right">add_shopping_cart</i></button>
                 </form>
             </div>
         </div>

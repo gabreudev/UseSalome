@@ -38,18 +38,17 @@ class CarrinhoController extends Controller
         return view('site.carrinho');
     }
     
-    public function atualizacarrinho(Request $request)
+    public function update(Request $request)
     {
         if($request->id && $request->quantity){
             $carrinho = session()->get('carrinho');
-            $carrinho[$request->id]["quantity"] = $request->quantity;
+            $carrinho[$request->id]["quantidade"] = $request->quantity;
             session()->put('carrinho', $carrinho);
-            session()->flash('success', 'preço do item atualizado atualizado!');
+            return redirect()->back()->with('success', 'preco atualizado!');
         }
     }
   
-    public function rmvcarrinho($id)
-    {
+    public function rmvcarrinho($id){
         if($id) {
             $carrinho = session()->get('carrinho');
             if(isset($carrinho[$id])) {
@@ -60,8 +59,26 @@ class CarrinhoController extends Controller
         }
     }
     public function limparcarrinho() {
-        session()->forget('carrinho');
+        
+        $keys = array_keys(session('carrinho'));
+
+        foreach ($keys as $key) {
+        session()->forget('carrinho.' . $key);
+        }
         return redirect()->back()->with('success', 'O seu carrinho foi limpo!');
     }
+    public function atualizacarrinho(Request $request){
+
+        $carrinho = session()->get('carrinho', []);
     
-}
+        if (isset($carrinho[$request->id])) {
+            $carrinho[$request->id]['quantidade'] = $request->input('quantidade'); 
+            
+        } 
+    
+        session()->put('carrinho', $carrinho);
+    
+        return redirect()->back()->with('success', 'Preço atualizado com sucesso');
+    }
+    
+    }   
