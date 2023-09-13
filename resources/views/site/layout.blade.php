@@ -20,6 +20,13 @@
     @endforeach
   </ul>
   
+  <!-- Dropdown Structure -->
+  <ul id='dropdown2' class='dropdown-content'>
+    <li><a href="">Pedidos</a></li>
+    <li><a href="">Configurações</a></li>
+    <li><a href="{{route('logout')}}">sair</a></li>
+  </ul>
+
   <nav>
     <div class="nav-wrapper">
       <a href="{{route('index')}}" class="brand-logo center">UseSalome</a>
@@ -27,13 +34,25 @@
         <li><a href="{{route('index')}}">Home</a></li>
         <li><a href="" class="dropdown-trigger" data-target='dropdown1'>Categorias<i class="material-icons right">expand_more</i></a></li>
         <li><a href="{{route('carrinho')}}">Carrinho<span class="new badge white" data-badge-caption="" style="color: black; font-weight:700;">{{count((array) session('carrinho'))}}</span></a></li>
-        <li><a href="">Sobre</a></li>
+        <li><a href="{{route('sobre')}}">Sobre</a></li>
       </ul>
 
+      @auth
+          
       <ul id="" class="right">
-        <li><a href="" class="dropdown-trigger" data-target='dropdown1'>Olá {{auth()->user()->name}}<i class="material-icons right">expand_more</i></a></li>
+        <li><a href="" class="dropdown-trigger" data-target='dropdown2'>Olá {{auth()->user()->name}}<i class="material-icons right">expand_more</i></a></li>
       </ul>
     </div>
+
+    @else
+
+    <ul id="" class="right">
+      <li><a href="{{route('form')}}" class="btn">Login<i class="material-icons right">locked</i></a></li>
+    </ul>
+  </div>
+
+
+    @endauth
   </nav>
   @if (session('success'))
   <div class="alert alert-success center">

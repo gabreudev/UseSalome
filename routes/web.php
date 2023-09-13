@@ -3,7 +3,7 @@
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdutoController;
-
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('produtos', ProdutoController::class);
+Route::resource('users', UserController::class);
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,10 +37,8 @@ Route::post('/atualizacarrinho', [CarrinhoController::class, 'atualizacarrinho']
 
 Route::view('/sobre', 'site.sobre')->name('sobre');
 
-Route::view('/login', 'login.form')->name('login.form');
+Route::view('/login', 'login.form')->name('form');
 Route::post('/auth', [LoginController::class, 'auth'])->name('auth');
-Route::post('/logout', [LoginController::class, 'auth'])->name('logout');
-
-
-
-
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/register', [LoginController::class, 'create'])->name('create');
+Route::post('/store', [UserController::class, 'store'])->name('store');

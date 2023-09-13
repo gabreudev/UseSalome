@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -28,7 +31,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userData = $request->all();
+        $userData['password'] = bcrypt($request->password);
+    
+        // Crie o usuário no banco de dados
+        $user = User::create($userData);
+    
+        // Autentique o usuário
+        Auth::login($user);
+    
+        return redirect()->route('index');
     }
 
     /**
