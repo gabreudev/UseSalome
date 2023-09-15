@@ -1,3 +1,9 @@
+
+
+
+
+
+
 @extends('site.layout')
 
 @section('conteudo')
@@ -6,22 +12,31 @@
     <h4 style="font-style:italic">Carrinho <i class="material-icons">shopping_cart</i></h4>
 
     @php $total = 0 @endphp
-            @if (count(session('carrinho'))==0)
-            <h1 class="center">vazio</h1>
-            @else 
 
-    <table class="striped">
-        <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Nome</th>
-                <th>subtotal</th>
-                <th>Quantidade</th>
-                
-            </tr>
-        </thead>
+    @if(session()->has('carrinho')) 
+        @php  $quantItens = count(session('carrinho')) @endphp
+    @else 
+        @php $quantItens = 0 @endphp
+    @endif
 
-        <tbody>
+    @if ($quantItens == 0)
+        <h1 class="center">vazio</h1>
+        <div class="row container center">
+            <a href="{{route('index')}}" class="btn waves-effect waves-light orange">Ir para as Compras<i class="material-icons right">arrow_back</i></a>
+        </div>
+    @else 
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Nome</th>
+                    <th>subtotal</th>
+                    <th>Quantidade</th>
+                    
+                </tr>
+            </thead>
+
+            <tbody>
             
                 @foreach(session('carrinho') as $id => $details)
                     @php
@@ -63,9 +78,11 @@
                 <td>  </td>
             </tr>
         </tfoot>
-    </table>
     @endforeach
-            @endif
+            
+        </table>
+    
+
     <div class="row container center">
         <a href="{{route('index')}}" class="btn waves-effect waves-light orange">Continuar comprando <i class="material-icons right">arrow_back</i></a>
         <a href="{{route('limparcarrinho')}}" class="btn waves-effect waves-light blue">Limpar carrinho <i class="material-icons right">clear</i></a>    
@@ -75,6 +92,7 @@
 
         </form>
     </div>
+    @endif
 </div>
 
 <!-- Adicione este código JavaScript no final da página ou em um arquivo separado -->
@@ -87,6 +105,5 @@
         });
     });
 </script>
-
 
 @endsection
