@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>   
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="css/style.css">
+
+
     
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>UseSalome</title>
-</head>
-<body>    
-
-
   <!-- Dropdown Structure -->
   <ul id='dropdown1' class='dropdown-content'>
     @foreach($categoriasMenu as $categoriasM)
@@ -54,37 +54,18 @@
 
     @endauth
   </nav>
-  @if (session('success'))
-  <div class="alert alert-success center">
-      {{ session('success') }}
-  </div>
 
+
+    @yield('conteudo')
  
- <style> .alert-success {
-      background-color: #dff0d8; /* Cor de fundo verde */
-      border: 1px solid #d0e9c6; /* Borda verde mais clara */
-      color: #3c763d; /* Cor do texto verde escuro */
-      padding: 10px; /* Espaçamento interno */
-      margin: 10px 0; /* Espaçamento externo */
-      border-radius: 4px; /* Borda arredondada */
-  } </style>
-  
-@endif
-
-</div>
-
-
-  @yield('conteudo')
-
+    
+</head>
+<body>
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>     
-    <script>  
-        /* Dropdown */
-      var elemDrop = document.querySelectorAll('.dropdown-trigger');
-      var instanceDrop = M.Dropdown.init(elemDrop, {
-          coverTrigger: false,
-          constrainWidth: false
-      });
-    </script>
-  </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/chart.js" ></script>
+    <script src="js/main.js"></script>
+    
+
+</body>
 </html>

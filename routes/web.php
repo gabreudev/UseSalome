@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdutoController;
@@ -42,3 +43,6 @@ Route::post('/auth', [LoginController::class, 'auth'])->name('auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/register', [LoginController::class, 'create'])->name('create');
 Route::post('/store', [UserController::class, 'store'])->name('store');
+
+Route::get('/listaProdutos', [AdminController::class, 'listaProdutos'])->name('lista');
+Route::get('/listaVendas', [AdminController::class, 'listaVendas'])->name('lista');
