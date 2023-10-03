@@ -56,12 +56,16 @@
   </nav>
 
 
-    @yield('conteudo')
  
     
 </head>
 <body>
-    <!-- Compiled and minified JavaScript -->
+
+
+
+  @yield('conteudo')
+
+  <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="js/chart.js" ></script>
     <script src="js/main.js"></script>

@@ -68,7 +68,7 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th>ID</th>  
+                  
                   <th>Produto</th>
                     
                     <th>Preço</th>
@@ -81,7 +81,7 @@
                 @foreach ($produtos as $produto)
                 <tr>
                   <td><img src="img/mouse.jpg" class="circle "></td>
-                  <td>#123</td>
+                  
                   <td>Mouse USB</td>                    
                   <td>R$ 7.00</td>
                   <td>Eletrônicos</td>
