@@ -13,6 +13,7 @@
 <body>    
 
 
+
   <!-- Dropdown Structure -->
   <ul id='dropdown1' class='dropdown-content'>
     @foreach($categoriasMenu as $categoriasM)
@@ -22,7 +23,15 @@
   
   <!-- Dropdown Structure -->
   <ul id='dropdown2' class='dropdown-content'>
+
+    @auth
+    @if(auth()->user()->role == 'ROLE_ADMIN')
+    <li><a href="{{route('listaProdutos')}}">Gerenciar produtos</a></li>
+    <li><a href="">Gerenciar vendas</a></li>
+    @else
     <li><a href="">Pedidos</a></li>
+    @endif
+    @endauth
     <li><a href="">Configurações</a></li>
     <li><a href="{{route('logout')}}">sair</a></li>
   </ul>

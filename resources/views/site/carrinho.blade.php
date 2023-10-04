@@ -69,7 +69,7 @@
                     </tr>
                 
         </tbody>
-
+        @endforeach
         
         <tfoot>
             <tr>
@@ -78,7 +78,7 @@
                 <td>  </td>
             </tr>
         </tfoot>
-    @endforeach
+    
             
         </table>
     

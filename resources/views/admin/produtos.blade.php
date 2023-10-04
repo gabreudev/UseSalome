@@ -3,13 +3,13 @@
 @section('conteudo')
 
 <div class="fixed-action-btn">
-  <a  class="btn-floating btn-large bg-gradient-green modal-trigger" href="#modal1">
+  <a  class="btn-floating btn-large bg-gradient-green modal-trigger" href="{{route('cadastroProd')}}">
     <i class="large material-icons">add</i>
   </a>   
 </div>
 
  <!-- Modal Structure -->
- <div id="modal1" class="modal">
+ <div id="modal" class="modal">
   <div class="modal-content">
     <h4><i class="material-icons">card_giftcard</i> Novo produto</h4>
     <form class="col s12">
@@ -40,15 +40,28 @@
   
 </form>
 </div>
+ <!-- End Modal Structure -->
 
-  
- 
+<!-- Modal de Confirmação de Exclusão -->
+<div id="confirm-delete-modal" class="modal">
+  <div class="modal-content">
+    <h4>Confirmação de Exclusão</h4>
+    <p>Você tem certeza de que deseja excluir este produto?</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+    <a href="#" id="confirm-delete-btn" class="modal-close waves-effect waves-red btn-flat">Excluir</a>
+  </div>
+</div>
+<!-- End Modal de Confirmação de Exclusão -->
+
+
 
   <div class="row container crud">
       
-          <div class="row titulo ">              
-            <h1 class="left">Produtos</h1>
-            <span class="right chip">234 produtos cadastrados</span>  
+          <div class="row ">              
+            <h1 class="left">Produtos</h1> <br> <br> <br> <br> <br>
+            <a href="{{route('semEstoque')}}" class="modal-close waves-effect waves-green btn pink right">Sem estoque</a>
           </div>
 
          <nav class="bg-gradient-blue">
@@ -67,12 +80,10 @@
           <table class="striped ">
               <thead>
                 <tr>
-                  <th></th>
-                  
-                  <th>Produto</th>
-                    
+                  <th>Produto</th>              
                     <th>Preço</th>
                     <th>Categoria</th>
+                    <th>Estoque</th>
                     <th></th>
                 </tr>
               </thead>
@@ -80,13 +91,14 @@
               <tbody>
                 @foreach ($produtos as $produto)
                 <tr>
-                  <td><img src="img/mouse.jpg" class="circle "></td>
-                  
-                  <td>Mouse USB</td>                    
-                  <td>R$ 7.00</td>
-                  <td>Eletrônicos</td>
-                  <td><a class="btn-floating  waves-effect waves-light orange"><i class="material-icons">mode_edit</i></a>
-                    <a class="btn-floating  waves-effect waves-light red"><i class="material-icons">delete</i></a></td>
+                  <td>{{$produto->nome}}</td>                    
+                  <td>R${{$produto->preco}}</td>
+                  <td>{{$produto->categoria->nome}}</td>
+                  <td>{{$produto->quantidade}}</td>
+                  <td>
+                    <a class="btn-floating waves-effect waves-light orange"><i class="material-icons">mode_edit</i></a>
+                    <a class="btn-floating waves-effect waves-light red delete-btn" data-id="{{ $produto->id }}"><i class="material-icons">delete</i></a>
+                  </td>
                 </tr> 
                 @endforeach
                 
@@ -95,15 +107,9 @@
             </table>
           </div> 
 
-          <ul class="pagination center">
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-            <li class="active"><a href="#!">1</a></li>
-            <li class="waves-effect"><a href="#!">2</a></li>
-            <li class="waves-effect"><a href="#!">3</a></li>
-            <li class="waves-effect"><a href="#!">4</a></li>
-            <li class="waves-effect"><a href="#!">5</a></li>
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-          </ul>               
+          <div class="row center">
+            {{$produtos->links('custom.pagination')}}
+        </div>             
   </div>
          
 
@@ -116,5 +122,25 @@
            coverTrigger: false,
            constrainWidth: false
        });
+       document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, {});
+
+    var deleteButtons = document.querySelectorAll('.delete-btn');
+
+    deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var productId = this.getAttribute('data-id');
+            var confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+            var deleteUrl = '/deleteProd/' + productId; // Defina a rota correta aqui
+            confirmDeleteBtn.setAttribute('href', deleteUrl);
+
+            var modalInstance = M.Modal.getInstance(document.getElementById('confirm-delete-modal'));
+            modalInstance.open();
+        });
+    });
+});
+
      </script>
 @endsection
+

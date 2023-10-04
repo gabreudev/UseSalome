@@ -16,4 +16,8 @@ class Produto extends Model
             'image',
             'quantidade'
     ];
+    function categoria(){
+            return $this->belongsTo(User::class,'id_categoria');
+    
+    }
 }

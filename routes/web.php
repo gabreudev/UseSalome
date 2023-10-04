@@ -47,3 +47,8 @@ Route::post('/store', [UserController::class, 'store'])->name('store');
 Route::get('/listaProdutos', [AdminController::class, 'listaProdutos'])->name('listaProdutos');
 Route::get('/listaVendas', [AdminController::class, 'listaVendas'])->name('listaVendas');
 Route::get('/cadastroProd', [AdminController::class, 'cadastroProd'])->name('cadastroProd');
+
+Route::get('/deleteProd/{id}', [AdminController::class, 'deleteProd'])->name('deleteProd');
+
+
+Route::get('/semEstoque}', [AdminController::class, 'listaSemEstoque'])->name('semEstoque');
