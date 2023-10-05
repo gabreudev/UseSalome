@@ -2,7 +2,8 @@
 @section('conteudo')
     <div class="container">
         <h1 class="center-align">Cadastro de Produto</h1>
-        <form action="processar_cadastro.php" method="POST" enctype="multipart/form-data">
+        <form action="{{route('cadastrarProd')}}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="input-field">
                 <input type="text" id="nome" name="nome" required>
                 <label for="nome">Nome do Produto</label>

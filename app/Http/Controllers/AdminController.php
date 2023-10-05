@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use GuzzleHttp\Psr7\Request;
 
 class AdminController extends Controller
 {
@@ -10,11 +11,8 @@ class AdminController extends Controller
         $produtos =  Produto::paginate(5);
         return view('admin.produtos', compact('produtos'));
     }
-
-    function listaVendas(){
-        // $vendas =  Venda::paginate(3);
-         return view('admin.venda');
-    }
+    
+    
     function cadastroProd(){
         return view('admin.cadastroProd');
     }
@@ -30,9 +28,17 @@ class AdminController extends Controller
         }
     }
 
-    
+
     function listaSemEstoque(){
         $produtos = Produto::where('quantidade', '=', 0)->paginate(3);
         return view('admin.produtos', compact('produtos'));
     }
+    function store(Request $request){
+        $data = $request;
+        $data['role']= 'ROLE_USER';
+        Produto::create($data);
+
+        return redirect(route('listaProd'));
+    }
+
 }
